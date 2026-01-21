@@ -15,10 +15,21 @@
       "author": {
         "name": "gruckion"
       },
-      "source": ".",
+      "source": "./",
       "category": "bug-fixes",
-      "tags": ["cwd", "working-directory", "bash", "hooks"],
-      "keywords": ["cwd", "bash", "hooks", "bug-fix", "working-directory"]
+      "tags": [
+        "cwd",
+        "working-directory",
+        "bash",
+        "hooks"
+      ],
+      "keywords": [
+        "cwd",
+        "bash",
+        "hooks",
+        "bug-fix",
+        "working-directory"
+      ]
     }
   ]
 }
