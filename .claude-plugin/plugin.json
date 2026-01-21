@@ -1,0 +1,13 @@
+{
+  "name": "cwd-tracker",
+  "version": "1.0.0",
+  "description": "Fixes the working directory tracking bug in Claude Code by notifying Claude when the CWD changes after cd commands",
+  "author": {
+    "name": "gruckion",
+    "url": "https://github.com/gruckion"
+  },
+  "homepage": "https://github.com/gruckion/claude-code-cwd-tracker",
+  "repository": "https://github.com/gruckion/claude-code-cwd-tracker",
+  "license": "MIT",
+  "keywords": ["cwd", "working-directory", "bash", "hooks", "bug-fix"]
+}

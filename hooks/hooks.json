@@ -1,0 +1,28 @@
+{
+  "description": "Notifies Claude when the working directory changes after Bash commands",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/cwd-notify.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rm -f /tmp/claude-cwd-state && echo '✓ CWD Tracker loaded: Working directory changes will be tracked'"
+          }
+        ]
+      }
+    ]
+  }
+}

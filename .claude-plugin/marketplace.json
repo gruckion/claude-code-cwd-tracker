@@ -1,0 +1,24 @@
+{
+  "name": "cwd-tracker-marketplace",
+  "owner": {
+    "name": "gruckion"
+  },
+  "metadata": {
+    "description": "CWD Tracker plugin for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "cwd-tracker",
+      "description": "Fixes the working directory tracking bug by notifying Claude when CWD changes",
+      "version": "1.0.0",
+      "author": {
+        "name": "gruckion"
+      },
+      "source": ".",
+      "category": "bug-fixes",
+      "tags": ["cwd", "working-directory", "bash", "hooks"],
+      "keywords": ["cwd", "bash", "hooks", "bug-fix", "working-directory"]
+    }
+  ]
+}

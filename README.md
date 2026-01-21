@@ -85,33 +85,54 @@ This plugin uses Claude Code's **hook system** to detect when the working direct
 
 ## Installation
 
-### 1. Create the hooks directory
+### Option 1: Plugin Marketplace (Recommended)
+
+The easiest way to install is via Claude Code's plugin system:
+
+```bash
+# Add the marketplace
+/plugin marketplace add gruckion/claude-code-cwd-tracker
+
+# Install the plugin
+/plugin install cwd-tracker
+```
+
+That's it! The plugin is now active. On session start, you'll see:
+```
+✓ CWD Tracker loaded: Working directory changes will be tracked
+```
+
+### Option 2: Manual Installation
+
+If you prefer manual installation:
+
+#### 1. Create the hooks directory
 
 ```bash
 mkdir -p ~/.claude/hooks
 ```
 
-### 2. Download the hook script
+#### 2. Download the hook script
 
 ```bash
 curl -o ~/.claude/hooks/cwd-notify.sh \
-  https://raw.githubusercontent.com/gruckion/claude-code-cwd-tracker/main/hooks/cwd-notify.sh
+  https://raw.githubusercontent.com/gruckion/claude-code-cwd-tracker/main/scripts/cwd-notify.sh
 ```
 
 Or clone the repository:
 
 ```bash
 git clone https://github.com/gruckion/claude-code-cwd-tracker.git
-cp claude-code-cwd-tracker/hooks/cwd-notify.sh ~/.claude/hooks/
+cp claude-code-cwd-tracker/scripts/cwd-notify.sh ~/.claude/hooks/
 ```
 
-### 3. Make it executable
+#### 3. Make it executable
 
 ```bash
 chmod +x ~/.claude/hooks/cwd-notify.sh
 ```
 
-### 4. Configure Claude Code
+#### 4. Configure Claude Code
 
 Add the hook to your `~/.claude/settings.json`:
 
@@ -135,9 +156,36 @@ Add the hook to your `~/.claude/settings.json`:
 
 If you already have a `settings.json`, merge the hooks section with your existing configuration.
 
-### 5. Restart Claude Code
+#### 5. Restart Claude Code
 
 The hook takes effect on new sessions.
+
+## Commands
+
+When installed as a plugin, you get these slash commands:
+
+### `/cwd-tracker:verify`
+
+Test if CWD tracking is working correctly. Runs an automated verification sequence.
+
+```
+> /cwd-tracker:verify
+
+✓ CWD tracking is working correctly
+```
+
+### `/cwd-tracker:status`
+
+Show current CWD tracking state and diagnostics.
+
+```
+> /cwd-tracker:status
+
+=== CWD Tracker Status ===
+State file: /tmp/claude-cwd-state
+Last tracked CWD: /Users/you/project/subdir
+Current CWD: /Users/you/project/subdir
+```
 
 ## Verification
 
@@ -176,15 +224,27 @@ If the working directory changed, you'll also see the notification in the tool r
 
 ## Architecture
 
-### File Structure
+### Plugin Structure
 
 ```
-~/.claude/
+claude-code-cwd-tracker/
+├── .claude-plugin/
+│   ├── plugin.json        # Plugin metadata
+│   └── marketplace.json   # Marketplace registration
 ├── hooks/
+│   └── hooks.json         # Hook configuration
+├── scripts/
 │   └── cwd-notify.sh      # The hook script
-├── settings.json          # Claude Code configuration (you edit this)
-└── ...
+├── commands/
+│   ├── verify.md          # /cwd-tracker:verify command
+│   └── status.md          # /cwd-tracker:status command
+├── README.md
+└── LICENSE
+```
 
+### Runtime Files
+
+```
 /tmp/
 └── claude-cwd-state       # Stores last known cwd (auto-created)
 ```
