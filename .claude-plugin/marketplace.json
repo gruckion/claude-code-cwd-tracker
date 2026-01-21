@@ -5,7 +5,8 @@
   },
   "metadata": {
     "description": "CWD Tracker plugin for Claude Code",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "pluginRoot": ".."
   },
   "plugins": [
     {
@@ -15,7 +16,7 @@
       "author": {
         "name": "gruckion"
       },
-      "source": "./",
+      "source": ".",
       "category": "bug-fixes",
       "tags": [
         "cwd",
